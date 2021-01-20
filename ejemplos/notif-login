@@ -1,0 +1,12 @@
+#!/bin/sh
+if [ "$PAM_TYPE" != "open_session" ]; then
+	exit 0
+fi
+
+USER="$PAM_USER@$PAM_RHOST"
+if [ -z "$PAM_RHOST" ]; then
+	USER="$PAM_USER"
+fi
+
+sudo say --to "$PAM_USER" $(date "+%d/%m/%Y %H:%M")" > $USER inicia $PAM_SERVICE en TTY $PAM_TTY" &
+
